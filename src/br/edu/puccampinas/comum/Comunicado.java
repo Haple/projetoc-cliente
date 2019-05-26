@@ -3,12 +3,37 @@ package br.edu.puccampinas.comum;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * Classe responsável por armazenar uma informação do protocolo.
+ * 
+ * Todo o tráfego de informações entre cliente e servidor é feito através dessa classe, que é comum
+ * aos dois programas.
+ * 
+ * Essa classe é responsável por transmitir o seguinte:
+ * 
+ * <ol>
+ * <li>Comando: identifica a ação que deve ser tomada por quem recebe o comunicado</li>
+ * <li>Complementos: informações extras usadas na interpretação do comando</li>
+ * </ol>
+ * 
+ * @author aleph
+ *
+ */
 public class Comunicado implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private String comando;
   private String[] complementos;
 
+  /**
+   * Cria um objeto do tipo Comunicado.
+   * 
+   * Garante que os parâmetros usados sejam válidos e instancia um novo Comunicado.
+   * 
+   * @param comando identifica a ação que deve ser tomada por quem recebe o comunicado
+   * @param complementos informações extras usadas na interpretação do comando
+   * @throws Exception caso os parâmetros sejam inválidos
+   */
   public Comunicado(String comando, String... complementos) throws Exception {
     if (comando == null || comando.equals(""))
       throw new Exception("Comando ausente");
@@ -18,16 +43,35 @@ public class Comunicado implements Serializable {
     this.complementos = complementos;
   }
 
+  /**
+   * Cria um objeto do tipo Comunicado, sem complementos.
+   * 
+   * Garante que o comando não esteja vazio.
+   * 
+   * @param comando identifica a ação que deve ser tomada por quem recebe o comunicado
+   * @throws Exception caso o comando esteja vazio
+   */
   public Comunicado(String comando) throws Exception {
     if (comando == null || comando.equals(""))
       throw new Exception("Comando ausente");
     this.comando = comando;
   }
 
+  /**
+   * 
+   * @return o comando usado no comunicado
+   */
   public String getComando() {
     return comando;
   }
 
+  /**
+   * Busca um complemento.
+   * 
+   * @param posicao posição do complemento alvo
+   * @return devolve o complemento da posição almejada
+   * @throws Exception caso a posição seja inválida (menor que zero) ou o complemento não exista
+   */
   public String getComplemento(int posicao) throws Exception {
     if (posicao < 0)
       throw new Exception("Complemento inválido");

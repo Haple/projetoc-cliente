@@ -112,7 +112,6 @@ public class LojaMusicas extends JFrame
     this.pesquisaMusicas.getMusicasRemovidas().limpar();
     while (!musicas.isVazia()) {
       this.pesquisaMusicas.getModMusicas().addElement(musicas.getItem());
-      System.out.println(musicas.getItem());
       musicas.removeItem();
     }
   }

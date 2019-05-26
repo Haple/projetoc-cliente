@@ -2,6 +2,12 @@ package br.edu.puccampinas.cliente.musica;
 
 import java.text.DecimalFormat;
 
+/**
+ * Representa um registro de música do banco de dados.
+ * 
+ * @author aleph
+ *
+ */
 public class Musica implements Cloneable {
 
   private int codigo;
@@ -11,54 +17,78 @@ public class Musica implements Cloneable {
   private float preco;
   private int duracao;
 
+  /**
+   * 
+   * @return devolve o código de uma música
+   */
   public int getCodigo() {
     return codigo;
   }
 
-  public void setCodigo(int codigo) {
+  private void setCodigo(int codigo) {
     this.codigo = codigo;
   }
 
+  /**
+   * 
+   * @return devolve o código de uma música
+   */
   public String getTitulo() {
     return titulo;
   }
 
-  public void setTitulo(String titulo) throws Exception {
+  private void setTitulo(String titulo) throws Exception {
     if (titulo == null || titulo.equals(""))
       throw new Exception("Título é obrigatório");
     this.titulo = titulo;
   }
 
+  /**
+   * 
+   * @return devolve o cantor de uma música
+   */
   public String getCantor() {
     return cantor;
   }
 
-  public void setCantor(String cantor) throws Exception {
+  private void setCantor(String cantor) throws Exception {
     if (cantor == null || cantor.equals(""))
       throw new Exception("Cantor é obrigatório");
     this.cantor = cantor;
   }
 
+  /**
+   * 
+   * @return devolve o estilo de uma música
+   */
   public String getEstilo() {
     return estilo;
   }
 
-  public void setEstilo(String estilo) throws Exception {
+  private void setEstilo(String estilo) throws Exception {
     if (estilo == null || estilo.equals(""))
       throw new Exception("Estilo é obrigatório");
     this.estilo = estilo;
   }
 
+  /**
+   * 
+   * @return devolve o preço de uma música
+   */
   public float getPreco() {
     return preco;
   }
 
-  public void setPreco(float preco) throws Exception {
+  private void setPreco(float preco) throws Exception {
     if (preco <= 0)
       throw new Exception("Preço inválido");
     this.preco = preco;
   }
 
+  /**
+   * 
+   * @return devolve a duração de uma música
+   */
   public int getDuracao() {
     return duracao;
   }
@@ -82,12 +112,23 @@ public class Musica implements Cloneable {
     return resp.endsWith(" ") ? resp.substring(0, resp.length() - 1) : resp;
   }
 
-  public void setDuracao(int duracao) throws Exception {
+  private void setDuracao(int duracao) throws Exception {
     if (duracao <= 0)
       throw new Exception("Duração inválida");
     this.duracao = duracao;
   }
 
+  /**
+   * Cria uma nova música.
+   * 
+   * @param codigo
+   * @param titulo
+   * @param cantor
+   * @param estilo
+   * @param preco
+   * @param duracao
+   * @throws Exception Caso algum parâmetro seja inválido
+   */
   public Musica(int codigo, String titulo, String cantor, String estilo, float preco, int duracao)
       throws Exception {
     this.setCodigo(codigo);
@@ -144,6 +185,12 @@ public class Musica implements Cloneable {
     return true;
   }
 
+  /**
+   * Cria uma nova música baseando-se em outra música.
+   * 
+   * @param modelo
+   * @throws Exception caso a música seja nula.
+   */
   public Musica(Musica modelo) throws Exception {
     if (modelo == null) {
       throw new Exception("Musica não pode ser nula");
@@ -158,13 +205,10 @@ public class Musica implements Cloneable {
 
   public Object clone() {
     Musica ret = null;
-
     try {
       ret = new Musica(this);
     } catch (Exception erro) {
-    } // nao trato, pq this nunca � null e construtor de
-      // copia da excecao qdo seu parametro for null
-
+    }
     return ret;
   }
 

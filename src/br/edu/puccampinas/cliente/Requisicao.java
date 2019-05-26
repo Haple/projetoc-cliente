@@ -7,11 +7,24 @@ import java.net.Socket;
 import br.edu.puccampinas.cliente.estrutura.Lista;
 import br.edu.puccampinas.comum.Comunicado;
 
+/**
+ * Representa uma requisição a um servidor
+ * 
+ * @author aleph
+ *
+ */
 public class Requisicao {
 
   private String host;
   private int porta;
 
+  /**
+   * Cria um objeto de uma requisição
+   * 
+   * @param host
+   * @param porta
+   * @throws Exception caso o host esteja vazio ou a porta seja menor ou iguaul a zero
+   */
   public Requisicao(String host, int porta) throws Exception {
     if (host == null || host.trim().equals(""))
       throw new Exception("Host inválido");
@@ -21,6 +34,13 @@ public class Requisicao {
     this.porta = porta;
   }
 
+  /**
+   * Envia um novo comunicado para o servidor
+   * 
+   * @param x
+   * @return devolve uma lista de comunicados respondidos pelo servidor
+   * @throws Exception caso ocorra um erro ao se comunicar com o servidor
+   */
   public Lista<Comunicado> envie(Comunicado x) throws Exception {
     Lista<Comunicado> comunicados = new Lista<Comunicado>();
     try (Socket conexao = new Socket(host, porta);
