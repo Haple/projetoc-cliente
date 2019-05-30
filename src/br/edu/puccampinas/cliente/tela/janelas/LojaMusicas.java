@@ -44,9 +44,9 @@ public class LojaMusicas extends JFrame
     this.porta = porta;
 
     this.setTitle("Loja de Músicas");
-    this.setSize(1000, 500);
-    this.pesquisaMusicas = new PesquisaMusicas(490, 650);
-    this.listaDesejos = new ListaDesejos(490, 650);
+    this.setSize(1400, 700);
+    this.pesquisaMusicas = new PesquisaMusicas(690, 690);
+    this.listaDesejos = new ListaDesejos(690, 690);
 
     this.add(pesquisaMusicas, BorderLayout.WEST);
     this.add(listaDesejos, BorderLayout.EAST);
@@ -173,7 +173,7 @@ public class LojaMusicas extends JFrame
     } else if (duracao > 90) {
       total = total * 0.7f;
     }
-    this.listaDesejos.getLblValorTotal().setText(new DecimalFormat("R$##.00").format(total));
+    this.listaDesejos.getLblValorTotal().setText(new DecimalFormat("R$00.00").format(total));
   }
 
   @Override
